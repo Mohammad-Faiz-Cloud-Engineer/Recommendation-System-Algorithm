@@ -14,7 +14,7 @@
 # limitations under the License.
 
 import logging
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import Any, NamedTuple, Optional, Tuple
 
 import haiku as hk
@@ -258,15 +258,11 @@ class PhoenixModelConfig:
     name: Optional[str] = None
     fprop_dtype: Any = jnp.bfloat16
 
-    hash_config: HashConfig = None  # type: ignore
+    hash_config: HashConfig = field(default_factory=HashConfig)
 
     product_surface_vocab_size: int = 16
 
     _initialized = False
-
-    def __post_init__(self):
-        if self.hash_config is None:
-            self.hash_config = HashConfig()
 
     def initialize(self):
         self._initialized = True

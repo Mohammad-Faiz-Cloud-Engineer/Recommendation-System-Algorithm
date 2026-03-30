@@ -1,0 +1,47 @@
+Copyright © 2026 Mohammad Faiz
+Repository: https://github.com/Mohammad-Faiz-Cloud-Engineer/Algorithm
+
+This repository contains an advanced recommendation system algorithm created by 
+Mohammad Faiz. Originally developed for personal use, this project is now 
+open sourced under the Apache License 2.0.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+================================================================================
+
+ABOUT THIS PROJECT:
+
+This advanced recommendation system implements a sophisticated two-stage 
+architecture for content discovery and ranking:
+
+1. Retrieval Stage: Efficiently narrows down millions of candidates using 
+   a two-tower neural architecture with approximate nearest neighbor search.
+
+2. Ranking Stage: Scores and orders retrieved candidates using a transformer 
+   model that predicts multiple engagement types.
+
+The system combines in-network content (from followed accounts) with 
+out-of-network content (discovered through ML-based retrieval) to provide 
+personalized recommendations.
+
+================================================================================
+
+AUTHOR & MAINTAINER:
+Mohammad Faiz
+GitHub: https://github.com/Mohammad-Faiz-Cloud-Engineer
+Repository: https://github.com/Mohammad-Faiz-Cloud-Engineer/Algorithm
+
+================================================================================
+
+For questions, issues, or contributions, please visit:
+https://github.com/Mohammad-Faiz-Cloud-Engineer/Algorithm

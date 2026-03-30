@@ -1,0 +1,61 @@
+Advanced Recommendation System Algorithm
+Copyright © 2026 Mohammad Faiz
+Repository: https://github.com/Mohammad-Faiz-Cloud-Engineer/Algorithm
+
+This software was created by Mohammad Faiz for personal use and is now 
+open sourced under the Apache License, Version 2.0.
+
+Licensed under the Apache License, Version 2.0
+
+================================================================================
+
+THIRD-PARTY DEPENDENCIES:
+
+This project uses the following open source libraries:
+
+1. Rust Dependencies
+   Various open source libraries (see Cargo.toml files)
+   Licenses: Apache-2.0, MIT, and others
+   
+   Key dependencies include:
+   - tokio (async runtime)
+   - tonic (gRPC framework)
+   - dashmap (concurrent hashmap)
+   - anyhow (error handling)
+   - log (logging)
+
+2. Python Dependencies
+   Various open source libraries (see pyproject.toml)
+   Licenses: Apache-2.0, MIT, BSD, and others
+   
+   Key dependencies include:
+   - JAX (numerical computing)
+   - dm-haiku (neural network library)
+   - numpy (numerical arrays)
+   - pytest (testing framework)
+
+For complete dependency information, refer to:
+- Rust: Cargo.toml files in each module
+- Python: phoenix/pyproject.toml
+
+================================================================================
+
+ABOUT:
+
+This recommendation system algorithm implements:
+- Two-tower retrieval architecture for efficient candidate selection
+- Transformer-based ranking with candidate isolation
+- Multi-action engagement prediction
+- Hash-based embeddings for scalability
+- Real-time content ingestion and filtering
+
+Created by Mohammad Faiz as a personal project, now shared with the community.
+
+================================================================================
+
+CONTACT:
+
+Author & Maintainer: Mohammad Faiz
+GitHub: https://github.com/Mohammad-Faiz-Cloud-Engineer
+Repository: https://github.com/Mohammad-Faiz-Cloud-Engineer/Algorithm
+Issues: https://github.com/Mohammad-Faiz-Cloud-Engineer/Algorithm/issues

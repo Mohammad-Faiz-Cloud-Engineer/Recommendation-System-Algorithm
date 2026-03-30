@@ -27,10 +27,32 @@ use thunder::{
     thunder_service::ThunderServiceImpl,
 };
 
+/// Validate that required environment variables are set
+fn validate_environment() -> Result<()> {
+    // Check for required Kafka credentials if not in serving mode
+    // In serving mode, credentials are checked when Kafka is initialized
+    if std::env::var("APP_ENV").unwrap_or_default() == "prod" {
+        info!("Production environment detected - validating configuration");
+        
+        // Warn if credentials might be missing (they'll be checked later in kafka_utils)
+        if std::env::var("KAFKA_SASL_PASSWORD").is_err() {
+            warn!("KAFKA_SASL_PASSWORD not set - ensure it's provided if Kafka is used");
+        }
+        if std::env::var("KAFKA_PRODUCER_SASL_PASSWORD").is_err() {
+            warn!("KAFKA_PRODUCER_SASL_PASSWORD not set - ensure it's provided if Kafka producer is used");
+        }
+    }
+    
+    Ok(())
+}
+
 #[tokio::main]
 async fn main() -> Result<()> {
     env_logger::init();
     let args = args::Args::parse();
+
+    // Validate required environment variables early
+    validate_environment()?;
 
     // Initialize PostStore
     let post_store = Arc::new(PostStore::new(

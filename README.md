@@ -326,3 +326,12 @@ The `candidate-pipeline` crate provides a flexible framework for building recomm
 ## License
 
 This project is licensed under the Apache License 2.0. See [LICENSE](LICENSE) for details.
+
+## Security
+
+For security best practices and deployment guidelines, see:
+- [SECURITY.md](SECURITY.md) - Security policy and vulnerability reporting
+- [DEPLOYMENT.md](DEPLOYMENT.md) - Production deployment guide
+
+**Important:** This open source release requires proper configuration of environment variables for production use. Never commit credentials to version control.
+

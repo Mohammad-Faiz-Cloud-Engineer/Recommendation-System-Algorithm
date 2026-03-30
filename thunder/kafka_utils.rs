@@ -12,11 +12,19 @@ use crate::{
     },
 };
 
+// Kafka configuration - must be set via environment variables
+// These constants are intentionally empty for open source release
+// In production, set these via KAFKA_TWEET_EVENT_TOPIC, KAFKA_TWEET_EVENT_DEST, etc.
 const TWEET_EVENT_TOPIC: &str = "";
 const TWEET_EVENT_DEST: &str = "";
 
 const IN_NETWORK_EVENTS_DEST: &str = "";
 const IN_NETWORK_EVENTS_TOPIC: &str = "";
+
+/// Get required environment variable or return error
+fn get_required_env(key: &str) -> Result<String> {
+    std::env::var(key).with_context(|| format!("Required environment variable {} not set", key))
+}
 
 pub async fn start_kafka(
     args: &args::Args,
@@ -24,13 +32,18 @@ pub async fn start_kafka(
     user: &str,
     tx: tokio::sync::mpsc::Sender<i64>,
 ) -> Result<()> {
-    let sasl_password = std::env::var("")
-        .ok()
-        .or(args.sasl_password.clone())?;
+    // Require passwords from environment variables only for security
+    // Never accept passwords from command-line arguments in production
+    let sasl_password = get_required_env("KAFKA_SASL_PASSWORD")
+        .or_else(|_| args.sasl_password.clone().ok_or_else(|| 
+            anyhow::anyhow!("SASL password must be provided via KAFKA_SASL_PASSWORD environment variable")
+        ))?;
 
-    let producer_sasl_password = std::env::var("")
-        .ok()
-        .or(args.producer_sasl_password.clone());
+    let producer_sasl_password = get_required_env("KAFKA_PRODUCER_SASL_PASSWORD")
+        .or_else(|_| args.producer_sasl_password.clone().ok_or_else(|| 
+            anyhow::anyhow!("Producer SASL password must be provided via KAFKA_PRODUCER_SASL_PASSWORD environment variable")
+        ))
+        .ok();
 
     if args.is_serving {
         let unique_id = uuid::Uuid::new_v4().to_string();

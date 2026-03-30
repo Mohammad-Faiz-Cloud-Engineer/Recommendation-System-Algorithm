@@ -22,15 +22,20 @@ indent-width = 4
 line-length = 100
 
 [tool.ruff.lint]
+# Only ignore rules that are intentionally violated for specific reasons
 ignore = [
-    "E722",
-    "E731",
-    "E741",
-    "F405",
-    "E402",
-    "F403",
+    "ISC001",  # Implicit string concatenation - conflicts with formatter
 ]
-select = ["ISC001"]
+select = [
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "F",   # pyflakes
+    "I",   # isort
+    "N",   # pep8-naming
+    "UP",  # pyupgrade
+    "B",   # flake8-bugbear
+    "C4",  # flake8-comprehensions
+]
 
 [dependency-groups]
 dev = [

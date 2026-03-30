@@ -100,6 +100,7 @@ def block_user_reduce(
     B = user_embeddings.shape[0]
     D = emb_size
 
+    # Reshape to [B, 1, num_user_hashes * D] for projection
     user_embedding = user_embeddings.reshape((B, 1, num_user_hashes * D))
 
     embed_init = hk.initializers.VarianceScaling(embed_init_scale, mode="fan_out")
@@ -110,11 +111,12 @@ def block_user_reduce(
         init=lambda shape, dtype: embed_init(list(reversed(shape)), dtype).T,
     )
 
+    # Project to embedding dimension with dtype preservation
     user_embedding = jnp.dot(user_embedding.astype(proj_mat_1.dtype), proj_mat_1).astype(
         user_embeddings.dtype
     )
 
-    # hash 0 is reserved for padding)
+    # Hash 0 is reserved for padding - check if user is valid
     user_padding_mask = (user_hashes[:, 0] != 0).reshape(B, 1).astype(jnp.bool_)
 
     return user_embedding, user_padding_mask

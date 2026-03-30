@@ -21,6 +21,11 @@ impl Scorer<ScoredPostsQuery, PostCandidate> for PhoenixScorer {
         query: &ScoredPostsQuery,
         candidates: &[PostCandidate],
     ) -> Result<Vec<PostCandidate>, String> {
+        // Early return if no candidates to score
+        if candidates.is_empty() {
+            return Ok(Vec::new());
+        }
+
         let user_id = query.user_id as u64;
         let prediction_request_id = request_util::generate_request_id();
         let last_scored_at_ms = Self::current_timestamp_millis();

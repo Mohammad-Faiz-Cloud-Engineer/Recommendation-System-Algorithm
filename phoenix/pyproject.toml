@@ -1,7 +1,7 @@
 [project]
-name = "grok-1"
+name = "phoenix"
 version = "0.1.0"
-description = "Grok-1 model"
+description = "Phoenix recommendation system model"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [

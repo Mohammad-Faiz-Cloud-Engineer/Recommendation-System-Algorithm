@@ -342,8 +342,8 @@ class MultiHeadAttention(hk.Module):
         attn_logits *= self.attn_output_multiplier
         
         # Clamp attention logits to prevent overflow/underflow
-        max_attn_val = jnp.array(30.0, dtype=attn_logits.dtype)
-        attn_logits = max_attn_val * jnp.tanh(attn_logits / max_attn_val)
+        max_attn_val = 30.0
+        attn_logits = jnp.clip(attn_logits, -max_attn_val, max_attn_val)
 
         mask = mask[:, :, None, :, :]
 
@@ -353,8 +353,9 @@ class MultiHeadAttention(hk.Module):
                     f"Mask dimensionality {mask.ndim} must match logits dimensionality "
                     f"{attn_logits.ndim} for {mask.shape}/{attn_logits.shape}."
                 )
-            # Use large negative value for masked positions (will become ~0 after softmax)
-            attn_logits = jnp.where(mask, attn_logits, -1e30)
+            # Use dtype-appropriate minimum value for masked positions
+            mask_value = jnp.finfo(attn_logits.dtype).min
+            attn_logits = jnp.where(mask, attn_logits, mask_value)
         
         attn_weights = jax.nn.softmax(attn_logits).astype(query.dtype)  # [H, T', T]
 

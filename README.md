@@ -1,7 +1,7 @@
 # Advanced Recommendation System Algorithm
 
 **Copyright © 2026 Mohammad Faiz**  
-**Repository:** https://github.com/Mohammad-Faiz-Cloud-Engineer/Algorithm
+**Repository:** https://github.com/Mohammad-Faiz-Cloud-Engineer/Recommendation-System-Algorithm
 
 This repository contains an advanced recommendation system algorithm created by Mohammad Faiz. The system combines in-network content (from accounts you follow) with out-of-network content (discovered through ML-based retrieval) and ranks everything using a transformer-based model.
 

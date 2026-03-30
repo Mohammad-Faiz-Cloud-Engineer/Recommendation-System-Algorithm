@@ -1,7 +1,7 @@
 # Deployment Guide
 
 **Copyright © 2026 Mohammad Faiz**  
-**Repository:** https://github.com/Mohammad-Faiz-Cloud-Engineer/Algorithm
+**Repository:** https://github.com/Mohammad-Faiz-Cloud-Engineer/Recommendation-System-Algorithm
 
 This guide covers production deployment requirements for the recommendation system.
 

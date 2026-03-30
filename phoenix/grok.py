@@ -1,5 +1,5 @@
 # Copyright © 2026 Mohammad Faiz
-# Repository: https://github.com/Mohammad-Faiz-Cloud-Engineer/Algorithm
+# Repository: https://github.com/Mohammad-Faiz-Cloud-Engineer/Recommendation-System-Algorithm
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.

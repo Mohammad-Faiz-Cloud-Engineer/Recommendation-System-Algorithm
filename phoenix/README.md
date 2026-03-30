@@ -1,7 +1,7 @@
 # Phoenix: Recommendation System
 
 **Copyright © 2026 Mohammad Faiz**  
-**Repository:** https://github.com/Mohammad-Faiz-Cloud-Engineer/Algorithm
+**Repository:** https://github.com/Mohammad-Faiz-Cloud-Engineer/Recommendation-System-Algorithm
 
 This repository contains JAX implementation code for the Phoenix recommendation system, which powers content ranking and retrieval. Phoenix uses transformer-based architectures for both **retrieval** (finding relevant candidates from millions of items) and **ranking** (ordering a smaller set of candidates by predicted engagement).
 

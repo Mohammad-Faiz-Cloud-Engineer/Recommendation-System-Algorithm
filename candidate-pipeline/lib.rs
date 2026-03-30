@@ -21,4 +21,3 @@ pub mod scorer;
 pub mod selector;
 pub mod side_effect;
 pub mod source;
-pub mod util;

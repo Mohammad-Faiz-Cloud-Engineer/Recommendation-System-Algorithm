@@ -363,11 +363,15 @@ class PhoenixRetrievalModel(hk.Module):
             top_k_indices: [B, K] indices of top-k candidates
             top_k_scores: [B, K] similarity scores of top-k candidates
         """
+        # Compute dot product similarity (cosine similarity for normalized embeddings)
         scores = jnp.matmul(user_representation, corpus_embeddings.T)
 
+        # Apply corpus mask to filter out invalid entries
         if corpus_mask is not None:
             scores = jnp.where(corpus_mask[None, :], scores, -INF)
 
-        top_k_scores, top_k_indices = jax.lax.top_k(scores, top_k)
+        # Clamp top_k to corpus size to prevent errors
+        actual_k = jnp.minimum(top_k, corpus_embeddings.shape[0])
+        top_k_scores, top_k_indices = jax.lax.top_k(scores, actual_k)
 
         return top_k_indices, top_k_scores

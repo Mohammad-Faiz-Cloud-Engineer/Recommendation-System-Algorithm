@@ -333,12 +333,23 @@ where
     // Run all side effects in parallel
     fn run_side_effects(&self, input: Arc<SideEffectInput<Q, C>>) {
         let side_effects = self.side_effects();
+        let request_id = input.query.request_id().to_string();
         tokio::spawn(async move {
             let futures = side_effects
                 .iter()
                 .filter(|se| se.enable(input.query.clone()))
                 .map(|se| se.run(input.clone()));
-            let _ = join_all(futures).await;
+            let results = join_all(futures).await;
+            for (se, result) in side_effects.iter().zip(results) {
+                if let Err(err) = result {
+                    error!(
+                        "request_id={} side_effect={} failed: {}",
+                        request_id,
+                        se.name(),
+                        err
+                    );
+                }
+            }
         });
     }
 }

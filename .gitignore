@@ -18,6 +18,27 @@ target/
 Cargo.lock
 **/*.rs.bk
 
+# Logs
+*.log
+*.log.*
+logs/
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+credentials.json
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.swp
+*.swo
+*~
+
 # OS
 .DS_Store
 .DS_Store?
